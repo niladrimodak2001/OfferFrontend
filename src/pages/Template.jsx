@@ -142,7 +142,7 @@ function Template() {
                 </p> */}
               </div>
               <div className="flex gap-2  items-center cursor-pointer">
-                <button
+                {/* <button
                   onClick={() => {
                     navigator(`/addFields/${t?._id}`);
                   }}
@@ -150,7 +150,7 @@ function Template() {
                 >
                   <NotepadTextDashed />
                   Add Fields
-                </button>
+                </button> */}
                 <button
                   onClick={() => {
                     navigator(`/useTemplete/${t.role}`);
