@@ -12,14 +12,19 @@ function App() {
     <BrowserRouter>
       <Toaster />
       <Routes>
+        {/* For all */}
+        <Route path="/" element={<Template />} />
+        <Route path="/history" element={<HistoryPage />} />
+        
+        {/* For urgent use */}
         <Route path="/useTemplete/:role" element={<KeepIt />} />
         <Route path="/useTemplete/:role/edit/:id" element={<KeepIt />} />
-        <Route path="/" element={<Template />} />
+
+        {/* For dynamic offer letter generation */}
         <Route
           path="/addFields/:templateId"
           element={<TemplateAddFieldPage />}
         />
-        <Route path="/history" element={<HistoryPage />} />
       </Routes>
     </BrowserRouter>
   );

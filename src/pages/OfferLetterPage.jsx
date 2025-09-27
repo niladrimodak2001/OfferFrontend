@@ -7,7 +7,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { CSS } from "@dnd-kit/utilities";  // 👈 keep this here
+import { CSS } from "@dnd-kit/utilities"; // 👈 keep this here
 
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
@@ -21,12 +21,11 @@ import LeaveModal from "../components/LeaveModal";
 import { Edit2 } from "lucide-react";
 import { Trash } from "lucide-react";
 
-const TemplateAddFieldPage = () => {
+const OfferLetterPage = () => {
   const [fields, setFields] = useState([]);
   const [selectedField, setSelectedField] = useState(null);
   const [allAddedFields, setAllAddedFields] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
   const [inputType, setInputType] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -99,7 +98,7 @@ const TemplateAddFieldPage = () => {
       transition,
       cursor: "grab",
       opacity: isDragging ? 0.6 : 1,
-      width:"100%"
+      width: "100%",
     };
 
     return (
@@ -159,40 +158,6 @@ const TemplateAddFieldPage = () => {
     }
   };
 
-  // const handleAddSalaryField = async () => {
-  //   try {
-  //     console.log(
-  //       CTC,
-  //       earnings,
-  //       deductions,
-  //       gross_salary,
-  //       in_hand,
-  //       totalDeductions,
-  //       totalEarnings
-  //     );
-  //     const { data } = await axios.post(
-  //       `${
-  //         import.meta.env.VITE_BASE_API_URL
-  //       }/field/addSalaryField/${templateId}`,
-  //       {
-  //         salary: {
-  //           CTC: CTC,
-  //           earnings: earnings,
-  //           deductions: deductions,
-  //           gross_salary: gross_salary,
-  //           in_hand: in_hand,
-  //           total_deductions: totalDeductions,
-  //           total_earnings: totalEarnings,
-  //         },
-  //       }
-  //     );
-  //     console.log(data);
-  //     fetchTemplateAddedFields(templateId);
-  //     toast.success("Salary field added successfully");
-  //   } catch (error) {
-  //     toast.error(error.response.data.message);
-  //   }
-  // };
 
   const fetchTemplateAddedFields = async (templateId) => {
     try {
@@ -263,8 +228,6 @@ const TemplateAddFieldPage = () => {
     );
   }
 
-
-
   /**
    *
    * chatgpt given
@@ -327,10 +290,10 @@ const TemplateAddFieldPage = () => {
       toast.error(error);
     }
   };
-  /**
-   * IMP
-   */
 
+  /**
+   * Chatgpt end
+   */
   return (
     <div className="min-h-screen bg-gray-100 ">
       <div className="w-full mx-auto bg-white shadow-lg rounded-xl p-8">
@@ -435,7 +398,7 @@ const TemplateAddFieldPage = () => {
                         id={f._id}
                         onDoubleClick={() => setSelectedField(f?._id)}
                         isSelected={selectedField === f?._id}
-                        style={{flex:"1"}}
+                        style={{ flex: "1" }}
                       >
                         <div className="flex w-full items-center justify-between">
                           <div className="flex gap-2">
@@ -543,7 +506,9 @@ const TemplateAddFieldPage = () => {
                         disabled={!openEditModal}
                         value={editHeader}
                         onChange={(e) => setEditHeader(e.target.value)}
-                        className={`w-full p-2 rounded-sm text-lg text-gray-800 ${openEditModal && "border-2"}`}
+                        className={`w-full p-2 rounded-sm text-lg text-gray-800 ${
+                          openEditModal && "border-2"
+                        }`}
                       />
                     </div>
                     {console.log("val -> ", val)}
@@ -803,7 +768,6 @@ const TemplateAddFieldPage = () => {
                                 <div className="text-gray-700 flex gap-2">
                                   <span className="font-medium">Value:</span>{" "}
                                   <input
-                                 
                                     onChange={(e) =>
                                       setEditPlaceholders((prev) =>
                                         prev.map((ph) =>
@@ -876,4 +840,4 @@ const TemplateAddFieldPage = () => {
   );
 };
 
-export default TemplateAddFieldPage;
+export default OfferLetterPage;

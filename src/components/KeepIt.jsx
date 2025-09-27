@@ -330,8 +330,12 @@ function KeepIt() {
       ["personal_allowance"]: personal_allowance,
     }));
   };
+
+  const [loading,setLoading]=useState(false)
+
   const handleSave = async () => {
     try {
+      setLoading(true)
       // 1. Generate PDF blob from Testing component
       const blob = await pdf(<Testing data={data} />).toBlob();
 
@@ -354,8 +358,15 @@ function KeepIt() {
     } catch (error) {
       console.error("Error saving:", error);
       alert("Failed to save data & PDF.");
+    }finally{
+      setLoading(false)
     }
   };
+  if(loading){
+    return <div className="h-screen w-full flex items-center justify-center">
+      <h1 className="text-3xl font-bold ">Loading ... </h1>
+    </div>
+  }
 
   return (
     <div className="w-full h-screen flex bg-gray-100">
