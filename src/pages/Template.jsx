@@ -5,12 +5,21 @@ import TemplateModal from "../components/TemplateModal";
 import { Trash2 } from "lucide-react";
 import { NotepadTextDashed } from "lucide-react";
 import { useNavigate } from "react-router";
+import { History } from "lucide-react";
+import { BadgePlus } from "lucide-react";
+import { ClipboardPlus } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FileTerminal } from "lucide-react";
+import CreateOfferLetterModal from "../components/CreateOfferLetterModal";
 
 function Template() {
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [open,setOpen]=useState(false);
+
+
   const [formData, setFormData] = useState({
     role: "",
   
@@ -96,18 +105,25 @@ function Template() {
           📑 Offer Letter Templates
         </h1>
         <div className="flex gap-3 mt-4 md:mt-0">
-          <input
-            type="text"
-            placeholder="Search templates..."
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
           <button
             onClick={() => handleOpenModal()}
-            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition-all"
+            className="px-5 py-2 flex gap-1 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition-all"
           >
-            + Create Template
+            <BadgePlus /> Create Template
           </button>
-          <button onClick={()=>{navigator("/history")}} className="cursor-pointer px-5 py-2 bg-violet-600 text-white font-medium rounded-lg shadow hover:bg-violet-700 transition-all">
+          <button
+            onClick={() => navigator("/manageMasterData")}
+            className="px-5 py-2 flex gap-1 bg-green-600 text-white font-medium rounded-lg shadow hover:bg-green-700 transition-all"
+          >
+            <BadgePlus /> Manage Master Data
+          </button>
+          <button
+            onClick={() => {
+              navigator("/history");
+            }}
+            className="cursor-pointer flex gap-1 px-5 py-2 bg-violet-600 text-white font-medium rounded-lg shadow hover:bg-violet-700 transition-all"
+          >
+            <History />
             History
           </button>
         </div>
@@ -118,7 +134,7 @@ function Template() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {templates.map((t) => (
             <div
-              key={t._id}
+              key={t?._id}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-5 border border-gray-100"
             >
               <div className="flex justify-end">
@@ -126,34 +142,29 @@ function Template() {
               </div>
               <div className="flex h-40 flex-col gap-1 ">
                 <h2 className="text-lg font-semibold text-gray-800 mb-1">
-                  {t.role}
-                </h2>
-
-                <p className="text-sm text-gray-600 mb-1">
                   <span className="font-medium">Template Name:</span> {t.tname}
-                </p>
+                </h2>
                 <p className="text-sm text-gray-600 mb-1">
                   <span className="font-medium">Experience:</span>{" "}
                   {t.minYearExp} - {t.maxYearExp} years
                 </p>
-                {/* <p className="text-sm text-gray-600 mb-4">
-                  <span className="font-medium">CTC:</span> ₹
-                  {t.CTC?.toLocaleString()}
-                </p> */}
               </div>
               <div className="flex gap-2  items-center cursor-pointer">
-                {/* <button
-                  onClick={() => {
-                    navigator(`/addFields/${t?._id}`);
-                  }}
-                  className="w-fit cursor-pointer flex gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all"
-                >
-                  <NotepadTextDashed />
-                  Add Fields
-                </button> */}
                 <button
+                  onClick={() => navigator(`/template/${t?._id}/addPolicies`)}
+                  className="w-fit cursor-pointer flex gap-1 px-4 py-2 bg-violet-600 text-white rounded-lg font-medium hover:bg-violet-700 transition-all"
+                >
+                  <ClipboardPlus />
+                  Add Policies
+                </button>
+                <button
+                  // onClick={() => {
+                  //   // navigator(`/useTempleteAndCreateOfferLetter/${t?._id}`);
+
+                  // }}
                   onClick={() => {
-                    navigator(`/useTemplete/${t.role}`);
+                    setSelectedTemplate(t)
+                    setOpen(true);
                   }}
                   className="w-fit cursor-pointer flex gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all"
                 >
@@ -184,6 +195,9 @@ function Template() {
         setFormData={setFormData}
         isEdit={!!selectedTemplate}
       />
+      {open && (
+        <CreateOfferLetterModal isOpen={open} onClose={() => setOpen(false)} selectedTemplate={selectedTemplate}/>
+      )}
     </div>
   );
 }

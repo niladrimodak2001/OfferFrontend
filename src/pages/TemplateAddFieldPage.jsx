@@ -866,13 +866,7 @@ const TemplateAddFieldPage = () => {
                           )}
 
                           {/* Preview with highlights (variables without ${}) */}
-                          {/* <div
-                            className="p-3 border rounded bg-gray-50 text-lg text-gray-800"
-                            // dangerouslySetInnerHTML={{
-                            //   __html: highlighted || editValue,
-                            // }}
-                            
-                          /> */}
+                          
                           <div
                             className="p-3 border rounded bg-gray-50 text-lg text-gray-800"
                             dangerouslySetInnerHTML={{

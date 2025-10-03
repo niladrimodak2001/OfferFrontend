@@ -98,7 +98,9 @@ function HistoryPage() {
                   </a>
                 </td>
                 <td className="px-4 py-2 text-sm border-b space-x-2">
-                  <button onClick={()=>{navigator(`/useTemplete/${item?.role}/edit/${item?._id}`);}} className="px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600">
+                  <button onClick={()=>{navigator(
+                    `/offerLetter/${item?.offerLetter}/editPolicies`
+                  );}} className="px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600">
                     Edit
                   </button>
                   <button className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600">

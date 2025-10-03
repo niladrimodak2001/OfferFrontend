@@ -5,7 +5,9 @@ import { Toaster } from "react-hot-toast";
 import Template from "./pages/Template";
 import TemplateAddFieldPage from "./pages/TemplateAddFieldPage";
 import HistoryPage from "./pages/HistoryPage";
-
+import ManageMasterData from "./pages/ManageMasterData";
+import AddPolicies from "./pages/AddPolicies";
+import AddPoliciesOfferLetter from "./pages/AddPoliciesOfferLetter";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           element={<TemplateAddFieldPage />}
         />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/manageMasterData" element={<ManageMasterData />} />
+        <Route path="/template/:templateId/addPolicies" element={<AddPolicies/>} />
+        <Route path="/offerLetter/:offerLetterId/editPolicies" element={<AddPoliciesOfferLetter/>}/>
       </Routes>
     </BrowserRouter>
   );
